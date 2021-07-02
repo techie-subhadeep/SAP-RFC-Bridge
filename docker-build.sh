@@ -1,2 +1,2 @@
-docker build --target production -t registry.gitlab.com/cloud.subhadeepdas/docker-images/kite-bridge .
-docker push registry.gitlab.com/cloud.subhadeepdas/docker-images/kite-bridge
+docker build --target production -t subhadeepdas91/sap-rfc-bridge:latest .
+docker push subhadeepdas91/sap-rfc-bridge:latest

@@ -1,8 +1,8 @@
 FROM --platform=x86_64 python:3.8 as development
 
-ENV SAP_AHOST=dclerpse.wbsedcl.in
-ENV SAP_SYSNR=01
-ENV SAP_CLIENT=900
+ENV SAP_AHOST=
+ENV SAP_SYSNR=
+ENV SAP_CLIENT=
 ENV SAP_USER=
 ENV SAP_PASSWD=
 
@@ -31,9 +31,9 @@ WORKDIR /app
 
 FROM --platform=x86_64 tiangolo/uvicorn-gunicorn-fastapi:python3.8 as production
 
-ENV SAP_AHOST=dclerpse.wbsedcl.in
-ENV SAP_SYSNR=01
-ENV SAP_CLIENT=900
+ENV SAP_AHOST=
+ENV SAP_SYSNR=
+ENV SAP_CLIENT=
 ENV SAP_USER=
 ENV SAP_PASSWD=
 
