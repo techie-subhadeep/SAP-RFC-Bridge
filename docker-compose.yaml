@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "${APP_PORT}:80"
+    environment:
+      - SAP_AHOST=${SAP_AHOST}
+      - SAP_SYSNR=${SAP_SYSNR}
+      - SAP_CLIENT=${SAP_CLIENT}
+      - SAP_USER=${SAP_USER}
+      - SAP_PASSWD=${SAP_PASSWD}
