@@ -1,9 +1,11 @@
 from typing import Any, Dict, List
-from utils.sap_call import sap_call
+from utils.sap_call import sap_call, sap_ping
 from utils.sap_read_table import sap_read_table
 from pydantic import BaseModel
 from fastapi import APIRouter
 from fastapi.responses import ORJSONResponse
+from fastapi.responses import Response
+
 
 router = APIRouter()
 
@@ -12,6 +14,21 @@ class RFCResponse(BaseModel):
     status: str
     message: str
     data: Any
+
+
+@router.get(
+    "/ping",
+    description="""
+    Check Connectivity
+    """,
+)
+async def ping(response: Response):
+    try:
+        return sap_ping()
+    except Exception as e:
+        response.status_code = 500
+        response.media_type = "text/plain"
+        return str(e)
 
 
 @router.post(
