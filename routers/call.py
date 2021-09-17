@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from fastapi import APIRouter
 from fastapi.responses import ORJSONResponse
 from fastapi.responses import Response
+import orjson
 
 
 router = APIRouter()
@@ -46,6 +47,12 @@ async def kite_call(rfc_name: str, parameters: Dict[str, Any]):
 
     try:
         data = sap_call(rfc_name, **parameters)
+
+        data_json = orjson.dumps(
+            data, default=lambda o: f"<<non-serializable: {type(o).__qualname__}>>"
+        )
+        data = orjson.loads(data_json)
+
         status = "success"
     except Exception as e:
         status = "error"
