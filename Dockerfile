@@ -6,6 +6,7 @@ ENV SAP_CLIENT=
 ENV SAP_USER=
 ENV SAP_PASSWD=
 
+ENV POETRY_VERSION=1.2.0
 RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python && \
     cd /usr/local/bin && \
     ln -s /opt/poetry/bin/poetry && \
@@ -37,7 +38,8 @@ ENV SAP_CLIENT=
 ENV SAP_USER=
 ENV SAP_PASSWD=
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | POETRY_HOME=/opt/poetry python && \
+ENV POETRY_VERSION=1.2.0
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python && \
     cd /usr/local/bin && \
     ln -s /opt/poetry/bin/poetry && \
     poetry config virtualenvs.create false
